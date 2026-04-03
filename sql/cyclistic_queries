@@ -1,0 +1,66 @@
+sql/cyclistic_queries.sql
+-- ============================================
+-- CYCLISTIC CASE STUDY - SQL QUERIES
+-- Autor: Analista de datos
+-- Fecha: Marzo 2026
+-- ============================================
+
+
+-- ============================================
+-- QUERY 1: Combinar las 12 tablas mensuales
+-- ============================================
+
+CREATE TABLE `ciclystic-casestudy.cyclistic_data.trips_full_year` AS
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_03`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_04`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_05`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_06`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_07`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_08`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_09`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_10`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_11`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2025_12`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2026_01`
+UNION ALL
+SELECT ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng, member_casual, CAST(ride_duration AS STRING) AS ride_duration, day_of_week FROM `ciclystic-casestudy.cyclistic_data.trips_2026_02`;
+
+
+-- ============================================
+-- QUERY 2: Limpieza de datos - Crear trips_clean
+-- Elimina: viajes < 60 segundos y nulos en member_casual
+-- ============================================
+
+CREATE TABLE `ciclystic-casestudy.cyclistic_data.trips_clean` AS
+SELECT 
+  ride_id,
+  rideable_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  start_station_id,
+  end_station_name,
+  end_station_id,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual,
+  TIMESTAMP_DIFF(ended_at, started_at, SECOND) AS ride_duration_seconds,
+  day_of_week
+FROM `ciclystic-casestudy.cyclistic_data.trips_full_year`
+WHERE 
+  member_casual IS NOT NULL
+  AND ended_at IS NOT NULL
+  AND started_at IS NOT NULL
+  AND TIMESTAMP_DIFF(ended_at, started_at, SECOND) >= 60;
