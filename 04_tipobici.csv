@@ -1,0 +1,5 @@
+member_casual,rideable_type,total_viajes,promedio_duration_minutes
+casual,electric_bike,1258087,14.88
+casual,classic_bike,676155,39.65
+member,electric_bike,2237757,11.36
+member,classic_bike,1280363,14.95
