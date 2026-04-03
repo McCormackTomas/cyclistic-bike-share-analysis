@@ -1,7 +1,7 @@
 # 🚲 Cyclistic Bike-Share Analysis
 ## Google Data Analytics Certificate - Case Study 1
 
-![Tableau Dashboard](dashboard.png)
+![Tableau Dashboard](Dashboard.png)
 
 ## 📋 Overview
 Analysis of 5.4 million bike-share trips from Chicago's Cyclistic program (March 2025 - February 2026) to identify behavioral differences between casual riders and annual members, with the goal of designing marketing strategies to convert casual riders into members.
