@@ -3,31 +3,31 @@
 
 ![Tableau Dashboard](visualizations/Dashboard.png)
 
-## 📋 Overview
+## Overview
 Analysis of 5.4 million bike-share trips from Chicago's Cyclistic program (March 2025 - February 2026) to identify behavioral differences between casual riders and annual members, with the goal of designing marketing strategies to convert casual riders into members.
 
-## 🎯 Business Task
+## Business Task
 How do annual members and casual riders use Cyclistic bikes differently?
 
-## 🛠️ Tools Used
+## Tools Used
 - **Google Sheets / Excel** → Initial data exploration and calculated columns
 - **Google BigQuery** → Data combining, cleaning and analysis (SQL)
 - **Tableau Desktop** → Data visualizations and dashboard
 - **SQL** → Queries for descriptive analysis
 
-## 📊 Data Source
+## Data Source
 - **Source:** Motivate International Inc. (public license)
 - **Period:** March 2025 - February 2026 (12 months)
 - **Size:** 5,601,635 trips (5,452,362 after cleaning)
 - **Files:** 12 monthly CSV files
 
-## 🧹 Data Cleaning
+## Data Cleaning
 - Combined 12 monthly tables using `UNION ALL` in BigQuery
 - Removed trips shorter than 60 seconds (149,273 records = 2.7%)
 - Removed 2 null records in `member_casual` column
 - Calculated `ride_duration_seconds` from `started_at` and `ended_at` timestamps
 
-## 🔍 Key Findings
+## Key Findings
 
 ### 1. Trip Duration
 | User Type | Avg Duration |
@@ -50,7 +50,7 @@ How do annual members and casual riders use Cyclistic bikes differently?
 - Both groups prefer **electric bikes**
 - Casual riders using classic bikes average **39.65 min** per trip → long leisure rides
 
-## 💡 Top 3 Recommendations
+## Top 3 Recommendations
 
 1. **Weekend Digital Campaign** → Target casual riders on Fridays and Saturdays highlighting the cost savings of an annual membership vs. paying per ride.
 
@@ -73,6 +73,6 @@ cyclistic-bike-share-analysis/
     └── 04_tipobici.csv
 ```
 
-## 👤 Author
+## Author
 Data Analytics Portfolio Project  
 Tools: SQL · Tableau · Google BigQuery · Spreadsheets
