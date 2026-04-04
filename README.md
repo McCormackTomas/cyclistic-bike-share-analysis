@@ -1,4 +1,4 @@
-# 🚲 Cyclistic Bike-Share Analysis
+# <ins>Cyclistic Bike-Share Analysis<ins>
 ## Google Data Analytics Certificate - Case Study 1
 
 ![Tableau Dashboard](visualizations/Dashboard.png)
